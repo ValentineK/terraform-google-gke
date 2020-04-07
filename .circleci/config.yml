@@ -1,10 +1,10 @@
 defaults: &defaults
   machine: true
   environment:
-    GRUNTWORK_INSTALLER_VERSION: v0.0.21
+    GRUNTWORK_INSTALLER_VERSION: v0.0.23
     TERRATEST_LOG_PARSER_VERSION: v0.13.13
-    HELM_VERSION: v3.1.0
-    MODULE_CI_VERSION: v0.13.3
+    HELM_VERSION: v3.1.2
+    MODULE_CI_VERSION: v0.18.4
     TERRAFORM_VERSION: 0.12.7
     TERRAGRUNT_VERSION: NONE
     PACKER_VERSION: NONE
@@ -19,7 +19,6 @@ install_gruntwork_utils: &install_gruntwork_utils
     gruntwork-install --module-name "gruntwork-module-circleci-helpers" --repo "https://github.com/gruntwork-io/module-ci" --tag "${MODULE_CI_VERSION}"
     gruntwork-install --binary-name "terratest_log_parser" --repo "https://github.com/gruntwork-io/terratest" --tag "${TERRATEST_LOG_PARSER_VERSION}"
     configure-environment-for-gruntwork-module \
-      --circle-ci-2-machine-executor \
       --terraform-version ${TERRAFORM_VERSION} \
       --terragrunt-version ${TERRAGRUNT_VERSION} \
       --packer-version ${PACKER_VERSION} \
@@ -50,7 +49,7 @@ jobs:
           <<: *install_gruntwork_utils
 
       - save_cache:
-          key: gomod-{{ checksum "go.sum" }}
+          key: gomod-{{ checksum "test/go.sum" }}
           paths:
             - $HOME/go/src/
 
