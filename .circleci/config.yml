@@ -43,7 +43,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - gomod-{{ checksum "go.sum" }}
+          - gomod-{{ checksum "test/go.sum" }}
 
       # Install gruntwork utilities
       - run:
