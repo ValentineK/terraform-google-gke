@@ -8,7 +8,7 @@ defaults: &defaults
     TERRAFORM_VERSION: 0.12.7
     TERRAGRUNT_VERSION: NONE
     PACKER_VERSION: NONE
-    GOLANG_VERSION: 1.14
+    GOLANG_VERSION: 1.13.8
     K8S_VERSION: v1.10.0
     KUBECONFIG: /home/circleci/.kube/config
 
